@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,5 +32,11 @@ public class EmployeeService {
             log.info("No employee found with the above id.");
             return null;
         }
+    }
+
+    public List<EmployeeEntity> getEmployees() {
+        List<EmployeeEntity> employeeEntityList = (List<EmployeeEntity>) employeeRepository.findAll();
+        log.info("Fetched all employees from the DB");
+        return employeeEntityList;
     }
 }
