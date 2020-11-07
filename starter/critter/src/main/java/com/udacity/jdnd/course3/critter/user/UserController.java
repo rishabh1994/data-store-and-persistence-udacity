@@ -140,9 +140,11 @@ public class UserController {
         customerEntity.setPhoneNumber(customerDTO.getPhoneNumber());
         customerEntity.setNotes(customerDTO.getNotes());
         List<PetEntity> petEntityList = new ArrayList<>();
-        for (Long petId : customerDTO.getPetIds()) {
-            PetEntity petEntity = petService.getPetById(petId);
-            petEntityList.add(petEntity);
+        if (customerDTO.getPetIds() != null) {
+            for (Long petId : customerDTO.getPetIds()) {
+                PetEntity petEntity = petService.getPetById(petId);
+                petEntityList.add(petEntity);
+            }
         }
         customerEntity.setPetEntityList(petEntityList);
         return customerEntity;
