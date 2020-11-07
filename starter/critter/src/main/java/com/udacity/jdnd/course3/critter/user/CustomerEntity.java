@@ -11,7 +11,6 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@ToString
 public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

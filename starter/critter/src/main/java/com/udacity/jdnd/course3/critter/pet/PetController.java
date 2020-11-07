@@ -1,8 +1,6 @@
 package com.udacity.jdnd.course3.critter.pet;
 
-import com.udacity.jdnd.course3.critter.user.CustomerEntity;
-import com.udacity.jdnd.course3.critter.user.CustomerRepository;
-import com.udacity.jdnd.course3.critter.user.CustomerService;
+import com.udacity.jdnd.course3.critter.user.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +31,10 @@ public class PetController {
         log.info("Pet saved : {}", savedPetEntity.toString());
         PetDTO savedPetDTO = getPetDTOFromPetEntity(savedPetEntity);
         log.info("Converting saved pet entity to DTO : {}", savedPetDTO.toString());
+        CustomerEntity customerEntity = petEntity.getCustomerEntity();
+        customerEntity.getPetEntityList().add(petEntity);
+        customerService.saveCustomer(customerEntity);
+
         return savedPetDTO;
     }
 
